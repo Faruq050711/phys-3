@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fisika Semester 3 — Ringkasan & Latihan Soal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F8FB;--ink:#14213D;--mute:#56627F;--line:#D5DCEA;--card:#fff;--a:#2B59FF}
+@media(prefers-color-scheme:dark){:root{--bg:#0E1626;--ink:#E8EDF8;--mute:#9DA9C6;--line:#26324D;--card:#152038}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 'Instrument Sans',system-ui,sans-serif}
+header{padding:48px 16px 28px;background-image:linear-gradient(color-mix(in srgb,var(--line) 55%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--line) 55%,transparent) 1px,transparent 1px);background-size:28px 28px}
+header>div,main{max-width:1000px;margin:auto}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.15}
+h1{font-size:clamp(2.2rem,7vw,4rem);font-weight:800;margin:0 0 8px}
+header p{margin:0;color:var(--mute);max-width:52ch}
+nav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+nav button{flex:none;border:1.5px solid var(--a);color:var(--a);background:none;border-radius:999px;padding:6px 14px;font:600 .9rem 'Instrument Sans',sans-serif;cursor:pointer}
+nav button[aria-selected=true]{background:var(--a);color:#fff}
+main{padding:24px 16px 56px}
+h2{font-size:2rem;color:var(--a);margin:8px 0 4px}
+h3{font-size:1.2rem;margin:28px 0 10px}
+.lead{color:var(--mute);margin:0 0 20px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+@media(max-width:720px){.g{grid-template-columns:1fr}}
+figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+figcaption{font-size:.85rem;color:var(--mute);margin-top:8px}
+svg{width:100%;height:auto;color:var(--ink);stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+svg text{fill:currentColor;stroke:none;font:12px 'Instrument Sans',sans-serif}
+.a{stroke:var(--a)}.f{fill:var(--a);fill-opacity:.22}.d{fill:var(--a);stroke:none}
+ul{margin:0;padding-left:20px}li{margin-bottom:6px}
+.fm code{display:inline-block;margin:3px 4px 3px 0;padding:3px 9px;border-radius:6px;font:600 .88rem ui-monospace,Menlo,monospace;background:color-mix(in srgb,var(--a) 13%,transparent)}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details[open] summary{color:var(--a)}
+details p{margin:10px 0 0}
+pre{background:#0F172A;color:#E2E8F0;padding:14px;border-radius:12px;overflow-x:auto;font:.85rem/1.5 ui-monospace,Menlo,monospace}
+footer{padding:20px 16px;text-align:center;color:var(--mute);font-size:.85rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0"><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke" stroke="none"/></marker></defs></svg>
+<header><div>
+<h1>Fisika Semester 3</h1>
+<p>Ringkasan materi, ilustrasi, dan latihan soal untuk delapan mata kuliah. Pilih mata kuliah di bawah, lalu klik soal untuk melihat pembahasan.</p>
+</div></header>
+<nav id="tabs" aria-label="Mata kuliah"></nav>
+<main id="app"></main>
+<footer>Ringkasan belajar mandiri — cocokkan dengan silabus dan catatan dosen.</footer>
+<script>
+const C=[
+{id:'fismod',n:'Fisika Modern 1',w:'#2B59FF',d:'Fisika abad ke-20: relativitas khusus dan awal mekanika kuantum.',
+r:['Relativitas khusus: kecepatan cahaya konstan; waktu memuai dan panjang menyusut pada kecepatan tinggi.','Radiasi benda hitam: energi terkuantisasi E = hf (Planck).','Efek fotoelektrik dan Compton menunjukkan cahaya berperilaku seperti partikel (foton).','Materi punya sifat gelombang (de Broglie); atom Bohr punya tingkat energi diskret.'],
+f:['γ = 1/√(1−v²/c²)','Δt = γΔt₀','K = hf − φ','λ = h/p','Eₙ = −13,6 eV/n²'],
+s:`<svg viewBox="0 0 320 190"><path d="M50 160h110M50 95h110M50 68h110M50 52h110"/><path class="a" d="M105 68v22" marker-end="url(#ar)"/><text x="112" y="84">hf</text><text x="170" y="164">n=1  −13,6 eV</text><text x="170" y="99">n=2  −3,4</text><text x="170" y="72">n=3  −1,51</text><text x="170" y="50">n=4  −0,85</text></svg>`,
+cap:'Tingkat energi atom hidrogen. Panah: foton dipancarkan saat elektron turun dari n=3 ke n=2.',
+q:[['Foton λ = 400 nm mengenai logam berfungsi kerja 2,0 eV. Berapa energi kinetik maksimum elektron? (hc = 1240 eV·nm)','E = 1240/400 = 3,1 eV, jadi K = 3,1 − 2,0 = <b>1,1 eV</b>.'],['Pesawat melaju 0,6c. Jam di pesawat berdetak 10 s. Berapa lama menurut pengamat di Bumi?','γ = 1/√(1−0,36) = 1,25, jadi Δt = <b>12,5 s</b>.'],['Hitung energi foton pada transisi n=3 → n=2 atom hidrogen.','13,6(1/4 − 1/9) = <b>1,89 eV</b>.']]},
+{id:'matfis',n:'Matematika Fisika 2',w:'#7B4DFF',d:'Alat matematika untuk fisika: deret, fungsi khusus, dan persamaan diferensial.',
+r:['Deret Fourier menguraikan fungsi periodik menjadi jumlah sinus dan cosinus.','Fungsi Gamma memperluas faktorial ke bilangan non-bulat: Γ(n+1) = n!.','Persamaan Legendre dan Bessel muncul pada soal berkoordinat bola dan silinder.','Persamaan diferensial parsial diselesaikan dengan pemisahan variabel.'],
+f:['f(x) = a₀/2 + Σ(aₙ cos nx + bₙ sin nx)','bₙ = (1/π)∫f(x) sin nx dx','Γ(n+1) = nΓ(n)','Γ(½) = √π'],
+s:()=>{const w=n=>{let p='';for(let i=0;i<=300;i++){let x=i/300*6.2832,y=0;for(let k=1;k<=n;k+=2)y+=Math.sin(k*x)/k;p+=(i?'L':'M')+(10+i)+' '+(100-y*76)+' '}return p};return`<svg viewBox="0 0 320 200"><path d="M10 100H310" opacity=".25"/><path d="M10 24H160V176H310" opacity=".35"/><path d="${w(1)}" opacity=".55"/><path class="a" d="${w(9)}"/></svg>`},
+cap:'Gelombang persegi: harmonik pertama (pudar) dan jumlah 5 suku (berwarna). Makin banyak suku, makin mirip.',
+q:[['Hitung Γ(5).','Γ(5) = 4! = <b>24</b>.'],['Hitung Γ(7/2).','(5/2)(3/2)(1/2)√π = <b>15√π/8</b>.'],['Untuk f(x) = x pada (−π, π), tentukan b₁.','bₙ = 2(−1)ⁿ⁺¹/n, jadi b₁ = <b>2</b>.']]},
+{id:'komfis',n:'Komputasi Fisika',w:'#0B7A5C',d:'Menyelesaikan masalah fisika dengan metode numerik dan Python.',
+r:['Metode Euler sederhana tetapi galatnya besar; RK4 jauh lebih akurat.','Newton-Raphson mencari akar persamaan lewat iterasi garis singgung.','Integrasi numerik: aturan trapesium dan Simpson; Monte Carlo untuk integral berdimensi tinggi.','Galat ada dua jenis: galat pemotongan (metode) dan galat pembulatan (mesin).'],
+f:['yᵢ₊₁ = yᵢ + h·f(xᵢ,yᵢ)','xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)','∫ ≈ h/2 [f₀ + 2f₁ + … + fₙ]'],
+s:()=>{let e='',u='',y=1;for(let i=0;i<=40;i++)e+=(i?'L':'M')+(20+i*7)+' '+(170-Math.exp(i/20)*20)+' ';for(let i=0;i<=4;i++){u+=(i?'L':'M')+(20+i*70)+' '+(170-y*20)+' ';y*=1.5}return`<svg viewBox="0 0 320 190"><path d="M20 15V170H300"/><path d="${e}" opacity=".55"/><path class="a" stroke-dasharray="5 4" d="${u}"/></svg>`},
+cap:'Kurva eksak y = eˣ (pudar) dan hampiran Euler dengan h = 0,5 (putus-putus).',
+k:`def euler(f, y0, x0, x1, h):
+    x, y = x0, y0
+    while x &lt; x1 - 1e-12:
+        y += h * f(x, y)
+        x += h
+    return y
+
+def newton(f, df, x, tol=1e-10):
+    while abs(f(x)) &gt; tol:
+        x -= f(x) / df(x)
+    return x
+
+print(newton(lambda x: x*x - 2, lambda x: 2*x, 1))  # 1.41421356...`,
+q:[['dy/dx = y, y(0) = 1. Dengan Euler h = 0,1, berapa y(0,2)?','y₁ = 1,1; y₂ = 1,1 + 0,11 = <b>1,21</b> (eksak 1,2214).'],['Satu iterasi Newton untuk f(x) = x² − 2 dari x₀ = 1.','x₁ = 1 − (−1)/2 = <b>1,5</b>.'],['Hitung ∫₀² x² dx dengan aturan trapesium, n = 2.','h = 1: (1/2)[0 + 2·1 + 4] = <b>3</b> (eksak 8/3 ≈ 2,67).']]},
+{id:'biofisika',n:'Biofisika',w:'#D6336C',d:'Hukum fisika pada makhluk hidup: aliran darah, membran sel, bunyi, dan optik.',
+r:['Kontinuitas A·v = konstan: darah melambat di kapiler karena luas total penampangnya sangat besar.','Difusi (hukum Fick): partikel bergerak dari konsentrasi tinggi ke rendah.','Potensial membran: perbedaan konsentrasi ion menghasilkan beda potensial (Nernst).','Tingkat intensitas bunyi diukur dalam desibel (dB).'],
+f:['A₁v₁ = A₂v₂','J = −D·dC/dx','E = 61,5 mV · log(C_luar/C_dalam)','β = 10 log(I/I₀)'],
+s:`<svg viewBox="0 0 320 190"><path stroke-width="10" d="M15 95H130M190 95H305"/><path class="a" d="M160 150V45" marker-end="url(#ar)"/><g class="n"><circle cx="40" cy="50" r="6"/><circle cx="80" cy="35" r="6"/><circle cx="220" cy="55" r="6"/><circle cx="270" cy="38" r="6"/></g><g class="d"><circle cx="40" cy="140" r="6"/><circle cx="85" cy="155" r="6"/><circle cx="225" cy="145" r="6"/><circle cx="270" cy="160" r="6"/></g><text x="15" y="20">luar sel: Na⁺ banyak</text><text x="15" y="184">dalam sel: K⁺ banyak</text></svg>`,
+cap:'Kanal pada membran sel: K⁺ (berwarna) berdifusi keluar mengikuti gradien konsentrasi.',
+q:[['Aorta berjari-jari 1,0 cm dengan v = 30 cm/s. Luas total kapiler 2000 cm². Berapa kecepatan darah di kapiler?','A₁ = π cm², jadi v₂ = π·30/2000 ≈ <b>0,047 cm/s</b>.'],['Intensitas bunyi 10⁻⁶ W/m². Berapa dB? (I₀ = 10⁻¹² W/m²)','β = 10 log(10⁶) = <b>60 dB</b>.'],['Potensial Nernst K⁺ pada 37 °C jika [K]luar = 5 mM dan [K]dalam = 140 mM.','E = 61,5 · log(5/140) ≈ <b>−89 mV</b>.']]},
+{id:'termodinamika',n:'Termodinamika',w:'#C2410C',d:'Hubungan kalor, kerja, energi, dan entropi.',
+r:['Hukum ke-0: dua benda yang seimbang dengan benda ketiga memiliki suhu sama.','Hukum ke-1: ΔU = Q − W, kekekalan energi.','Hukum ke-2: kalor tidak mengalir spontan dari dingin ke panas; entropi total tidak turun.','Mesin Carnot adalah mesin paling efisien di antara dua reservoir suhu.'],
+f:['PV = nRT','ΔU = Q − W','η = 1 − T_c/T_h','ΔS = Q/T','W = nRT ln(V₂/V₁)'],
+s:`<svg viewBox="0 0 320 190"><path d="M30 15V170H290"/><path class="a f" d="M60 40Q100 45 140 65Q190 85 215 125Q160 108 105 100Q75 72 60 40Z"/><text x="48" y="38">A</text><text x="146" y="62">B</text><text x="220" y="136">C</text><text x="92" y="116">D</text><text x="16" y="24">P</text><text x="288" y="186">V</text></svg>`,
+cap:'Siklus Carnot pada diagram P–V: dua isotermal (A→B, C→D) dan dua adiabatik. Luas = kerja per siklus.',
+q:[['Mesin Carnot bekerja di 600 K dan 300 K, menyerap 1000 J. Berapa kerjanya?','η = 1 − 300/600 = 50%, jadi W = <b>500 J</b>.'],['1 mol gas ideal memuai isotermal pada 300 K hingga volumenya 2×. Berapa kerjanya?','W = nRT ln2 = 8,314·300·0,693 ≈ <b>1729 J</b>.'],['1 kg es 0 °C melebur (L = 334 kJ/kg). Berapa ΔS?','ΔS = 334000/273 ≈ <b>1223 J/K</b>.']]},
+{id:'mekanika',n:'Mekanika 1',w:'#8A6D00',d:'Gerak benda di bawah pengaruh gaya: Newton, energi, momentum, dan osilasi.',
+r:['Hukum Newton: ΣF = m·a. Gambar diagram benda bebas sebelum menghitung.','Teorema kerja–energi: W = ΔK; gaya konservatif punya energi potensial.','Momentum kekal pada sistem terisolasi; energi kinetik kekal hanya pada tumbukan lenting.','Osilasi harmonik: ω = √(k/m); teredam jika ada gaya gesek.'],
+f:['ΣF = ma','K = ½mv²','p = mv','ω = √(k/m), T = 2π/ω'],
+s:`<svg viewBox="0 0 320 190"><path d="M30 170H270V40Z"/><g transform="translate(150 105) rotate(-28.4)"><rect class="f" x="-22" y="-30" width="44" height="30"/><path class="a" d="M0 -15V-62" marker-end="url(#ar)"/></g><path d="M143 92V145" marker-end="url(#ar)"/><text x="55" y="164">θ</text><text x="150" y="146">mg</text><text x="110" y="52">N</text></svg>`,
+cap:'Diagram benda bebas balok pada bidang miring: berat mg ke bawah, gaya normal N tegak lurus bidang.',
+q:[['Balok 2 kg pada bidang miring licin 30°. Berapa percepatannya?','a = g sin 30° = <b>4,9 m/s²</b>.'],['Pegas k = 200 N/m dengan massa 0,5 kg. Hitung ω dan periode.','ω = √(200/0,5) = <b>20 rad/s</b>; T = 2π/20 ≈ <b>0,31 s</b>.'],['Balok 1 kg (4 m/s) menumbuk balok 1 kg yang diam dan menempel. Berapa kecepatan akhir dan energi yang hilang?','v = 4/2 = <b>2 m/s</b>; energi hilang 8 − 4 = <b>4 J</b>.']]},
+{id:'digital',n:'Elektronika Digital',w:'#0C8599',d:'Logika biner, rangkaian kombinasional, dan rangkaian sekuensial.',
+r:['Sistem bilangan: biner, oktal, heksadesimal, dan BCD.','Aljabar Boolean dan peta Karnaugh menyederhanakan rangkaian logika.','Half adder: S = A⊕B, C = A·B; full adder menambahkan carry masuk.','Flip-flop menyimpan 1 bit; susunannya membentuk register dan counter.'],
+f:['A + A·B = A','(A·B)′ = A′ + B′','S = A ⊕ B','N flip-flop → maks 2ᴺ keadaan'],
+s:`<svg viewBox="0 0 320 190"><path d="M15 55H140M90 55V135H140M15 75H140M60 75V155H140M210 65H250M210 145H250"/><rect class="a" x="140" y="40" width="70" height="50" rx="8"/><rect class="a" x="140" y="120" width="70" height="50" rx="8"/><circle class="d" cx="90" cy="55" r="3"/><circle class="d" cx="60" cy="75" r="3"/><text x="4" y="48">A</text><text x="4" y="92">B</text><text x="175" y="70" text-anchor="middle">XOR</text><text x="175" y="150" text-anchor="middle">AND</text><text x="256" y="69">S</text><text x="256" y="149">C</text></svg>`,
+cap:'Half adder: gerbang XOR menghasilkan jumlah (S), gerbang AND menghasilkan carry (C).',
+q:[['Ubah 10110110₂ ke desimal.','128 + 32 + 16 + 4 + 2 = <b>182</b>.'],['Sederhanakan F = A·B + A·B′.','F = A(B + B′) = <b>A</b>.'],['Berapa flip-flop minimum untuk counter modulo-10 (BCD)?','2³ = 8 &lt; 10 ≤ 2⁴ = 16, jadi <b>4 flip-flop</b>.']]},
+{id:'geofisika',n:'Dasar-Dasar Geofisika',w:'#A0522D',d:'Struktur bumi, gelombang seismik, serta medan gravitasi dan magnet bumi.',
+r:['Lapisan bumi: kerak, mantel, inti luar (cair), inti dalam (padat).','Gelombang P (longitudinal) lebih cepat dari S (transversal); S tidak merambat di fluida.','Gravitasi g = GM/R² berkurang terhadap ketinggian dan sedikit bervariasi menurut lintang.','Metode eksplorasi: seismik, gravitasi, magnetik, dan geolistrik.'],
+f:['g = GM/R²','v = d/t','d = Δt·vₚvₛ/(vₚ − vₛ)'],
+s:`<svg viewBox="0 0 320 190"><circle class="f" cx="95" cy="95" r="88"/><circle cx="95" cy="95" r="76" opacity=".6"/><circle class="f" cx="95" cy="95" r="48"/><circle class="d" cx="95" cy="95" r="22"/><path d="M157 33H196M153 74H196M128 107H196M100 108L130 150H196" stroke-width="1" opacity=".6"/><text x="200" y="37">Kerak</text><text x="200" y="78">Mantel</text><text x="200" y="111">Inti luar (cair)</text><text x="200" y="154">Inti dalam (padat)</text></svg>`,
+cap:'Penampang lapisan bumi (tidak berskala).',
+q:[['Gelombang P (6 km/s) menempuh 120 km. Berapa waktunya?','t = 120/6 = <b>20 s</b>.'],['Berapa g pada ketinggian h = R dari permukaan bumi? (g₀ = 9,8 m/s²)','r = 2R, jadi g = g₀/4 = <b>2,45 m/s²</b>.'],['Selisih tiba S−P = 10 s, vₚ = 8 km/s, vₛ = 4 km/s. Berapa jarak sumber gempa?','d/4 − d/8 = 10, jadi d/8 = 10 → <b>80 km</b>.']]}
+];
+const tabs=document.getElementById('tabs'),app=document.getElementById('app');
+C.forEach(c=>{const b=document.createElement('button');b.textContent=c.n;b.style.setProperty('--a',c.w);b.onclick=()=>{location.hash=c.id};tabs.append(b)});
+function show(){
+const i=Math.max(0,C.findIndex(c=>c.id==location.hash.slice(1))),c=C[i];
+[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j==i));
+app.style.setProperty('--a',c.w);
+app.innerHTML=`<h2>${c.n}</h2><p class="lead">${c.d}</p>
+<div class="g"><figure>${typeof c.s=='function'?c.s():c.s}<figcaption>${c.cap}</figcaption></figure>
+<section><h3 style="margin-top:0">Ringkasan</h3><ul>${c.r.map(x=>`<li>${x}</li>`).join('')}</ul>
+<h3>Rumus kunci</h3><div class="fm">${c.f.map(x=>`<code>${x}</code>`).join('')}</div></section></div>
+${c.k?`<h3>Kode Python</h3><pre>${c.k}</pre><p class="lead">Versi lengkap dengan grafik ada di <code>python/latihan_komputasi.py</code>.</p>`:''}
+<h3>Latihan soal</h3>${c.q.map((x,j)=>`<details><summary>${j+1}. ${x[0]}</summary><p>${x[1]}</p></details>`).join('')}`;
+tabs.children[i].scrollIntoView({inline:'center',block:'nearest'});
+}
+addEventListener('hashchange',show);show();
+</script>
+</body>
+</html>
